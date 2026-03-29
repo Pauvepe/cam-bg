@@ -326,6 +326,14 @@ export default function CameraPage() {
     await startCamera(f);
   };
 
+  // Connect stream to video element AFTER it mounts
+  useEffect(() => {
+    if (started && videoRef.current && streamRef.current && !videoRef.current.srcObject) {
+      videoRef.current.srcObject = streamRef.current;
+      videoRef.current.play().catch(() => {});
+    }
+  }, [started]);
+
   useEffect(() => {
     return () => { streamRef.current?.getTracks().forEach(t => t.stop()); cancelAnimationFrame(animFrameRef.current); };
   }, []);
@@ -335,14 +343,14 @@ export default function CameraPage() {
     return (
       <div className="flex flex-col items-center justify-center" style={{ height: "100dvh", background: "#000" }}>
         <div className="text-white text-5xl font-bold tracking-tight mb-2">CamBG</div>
-        <p className="text-white/40 text-center text-sm max-w-xs mb-8">C\u00e1mara con eliminaci\u00f3n de fondo</p>
+        <p className="text-white/40 text-center text-sm max-w-xs mb-8">{"C\u00e1mara con eliminaci\u00f3n de fondo"}</p>
         {error && <p className="text-red-400 text-sm text-center mb-4">{error}</p>}
         <button
           onClick={() => startCamera()}
           disabled={loading}
           className="bg-white text-black font-semibold px-8 py-4 rounded-2xl text-lg active:scale-95 transition-transform disabled:opacity-50"
         >
-          {loading ? "Iniciando..." : "Abrir C\u00e1mara"}
+          {loading ? "Iniciando..." : "{"Abrir C\u00e1mara"}"}
         </button>
       </div>
     );
