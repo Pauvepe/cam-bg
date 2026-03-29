@@ -350,7 +350,7 @@ export default function CameraPage() {
           disabled={loading}
           className="bg-white text-black font-semibold px-8 py-4 rounded-2xl text-lg active:scale-95 transition-transform disabled:opacity-50"
         >
-          {loading ? "Iniciando..." : "{"Abrir C\u00e1mara"}"}
+          {loading ? "Iniciando..." : "Abrir C\u00e1mara"}
         </button>
       </div>
     );
