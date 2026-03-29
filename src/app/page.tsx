@@ -439,10 +439,10 @@ export default function CameraPage() {
   // --- CAMERA VIEW ---
   return (
     <div ref={containerRef} className="relative h-dvh bg-black overflow-hidden" onClick={() => setShowControls((s) => !s)}>
-      {/* Hidden elements */}
-      <video ref={videoRef} playsInline muted className="hidden" />
-      <canvas ref={canvasRef} className="hidden" />
-      <canvas ref={bgCanvasRef} className="hidden" />
+      {/* Off-screen elements - video MUST NOT be display:none or browser won't decode frames */}
+      <video ref={videoRef} playsInline muted autoPlay className="absolute w-1 h-1 opacity-0 pointer-events-none" style={{ top: -9999 }} />
+      <canvas ref={canvasRef} className="absolute w-0 h-0 opacity-0 pointer-events-none" style={{ top: -9999 }} />
+      <canvas ref={bgCanvasRef} className="absolute w-0 h-0 opacity-0 pointer-events-none" style={{ top: -9999 }} />
       <input ref={fileInputRef} type="file" accept="image/*" className="hidden" onChange={onFileChange} />
 
       {/* Output canvas - full screen */}
