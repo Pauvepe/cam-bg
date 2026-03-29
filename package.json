@@ -11,7 +11,6 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
   "dependencies": {
     "@mediapipe/tasks-vision": "^0.10.34",
     "@tailwindcss/postcss": "^4.2.2",
