@@ -23,7 +23,7 @@ export default function CameraPage() {
   const [bgRemoval, setBgRemoval] = useState(false);
   const [bgImage, setBgImage] = useState<HTMLImageElement | null>(null);
   const [bgUrl, setBgUrl] = useState<string | null>(null);
-  const [zoom, setZoom] = useState(0.75);
+  const [zoom, setZoom] = useState(1.0);
   const [facingMode, setFacingMode] = useState<"user" | "environment">("user");
   const [capturedPhoto, setCapturedPhoto] = useState<string | null>(null);
   const [segmenter, setSegmenter] = useState<any>(null);
@@ -33,12 +33,12 @@ export default function CameraPage() {
   const streamRef = useRef<MediaStream | null>(null);
   const animFrameRef = useRef<number>(0);
   const pinchStartDist = useRef<number>(0);
-  const pinchStartZoom = useRef<number>(0.75);
+  const pinchStartZoom = useRef<number>(1.0);
   const canvasSizeRef = useRef({ w: 0, h: 0 });
 
   const MIN_ZOOM = 0.25;
   const MAX_ZOOM = 3.0;
-  const DEFAULT_ZOOM = 0.75;
+  const DEFAULT_ZOOM = 1.0;
 
   const loadSegmenter = useCallback(async () => {
     try {
